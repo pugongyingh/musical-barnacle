@@ -1,11 +1,9 @@
 const express = require('express');
 const app = express();
+require('dotenv').config(); 
 
 const path = require('path');
 const port = process.env.PORT || 3000
-
-const views = require('./routes/views');
-const api = require('./routes/api');
 
 
 // Set rendering engine
@@ -22,8 +20,9 @@ app.use(express.urlencoded({extended: false}));
 
 
 // Routes
-app.use('/api', api);
-app.use('/', views);
+app.use('/', require('./routes/views'));
+app.use('/api', require('./routes/api'));
+app.use('/admin', require('./routes/admin'));
 
 
 // Run server

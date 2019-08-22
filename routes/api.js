@@ -1,15 +1,11 @@
 const express = require('express');
-const { MongoClient, ObjectID } = require('mongodb');
+const { ObjectID } = require('mongodb');
+const path = require('path');
 const router = express.Router();
-
-async function loadPosts() {   
-    let uri = 'mongodb+srv://root:Gr33nk1d5@cluster0-urxt4.mongodb.net/test?retryWrites=true&w=majority'
-    const client = await MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-    return client.db('cms').collection('posts');
-}
+const getPosts = require('../utils/db');
 
 (async () => {
-    const posts = await loadPosts();
+    const posts = await getPosts();
 
     // Get
     router.get('/', async function(req, res) {
@@ -23,13 +19,15 @@ async function loadPosts() {
 
     // Create
     router.post('/', async function(req, res) {
+
         await posts.insertOne({
             title: req.body.title,
             content: req.body.content,
             author: req.body.author,
-            pub_date: req.body.pub_date || new Date()
+            pub_date: req.body.pub_date
         })
-        res.status(201);
+
+        res.status(201).render(path.join(__dirname, '../views/msg.pug'), {msg: 'Successfully added one post.'})
     })
 
     // Edit

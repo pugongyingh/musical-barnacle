@@ -1,0 +1,10 @@
+extends layout
+
+block variables
+    - var page_title = "Blog"
+
+block content
+    h1 Posts
+    ul
+        each post in posts
+            li <a href="/posts/#{post._id}"><b>#{post.title}</b> by <i>#{post.author}</i></a>

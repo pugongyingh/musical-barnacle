@@ -1,0 +1,21 @@
+extends ../layout
+
+block variables
+    - var page_title = "Admin"
+
+block content
+    form(action="/api", method="post")
+        h1 Add Your content here
+        p
+            label(for="title")
+            input#title(type="text", name="title", required)
+        p
+            label(for="author")
+            input#author(type="text", name="author", required)
+        p
+            label(for="pub_date")
+            input#pub_date(type="date", name="pub_date", required)
+        p
+            label(for="content")
+            textarea#content(name="content", cols="30", rows="10", required)
+        button(type="submit") Create Post

@@ -9,6 +9,7 @@
     "dev": "nodemon node index"
   },
   "dependencies": {
+    "dotenv": "^8.1.0",
     "eslint": "^6.2.1",
     "express": "^4.17.1",
     "mongodb": "^3.3.0",

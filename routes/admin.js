@@ -8,17 +8,21 @@ const getPosts = require('../utils/db');
     let posts = await getPosts();
     
     router.get('/', async function(req, res) {
-        res.render(path.join(__dirname, '../views/index.pug'))
+        res.render(path.join(__dirname, '../views/admin/index.pug'))
     })
 
     router.get('/posts', async function(req, res) {
         let postArray = await posts.find({}).toArray();
-        res.render(path.join(__dirname, '../views/posts.pug'), {posts: postArray})
+        res.render(path.join(__dirname, '../views/admin/posts.pug'), {posts: postArray})
     })
     
-    router.get('/posts/:id', async function(req, res) {
+    router.get('/posts/add', async function(req, res) {
+        res.render(path.join(__dirname, '../views/admin/add.pug'))
+    })
+
+    router.get('/posts/item/:id', async function(req, res) {
         let post = await posts.findOne({_id: ObjectID(req.params.id)});
-        post ? res.render(path.join(__dirname, '../views/post.pug'), {...post}) : res.status(404)
+        res.render(path.join(__dirname, '../views/admin/post.pug'), {...post})
     })
 })()
     

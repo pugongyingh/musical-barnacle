@@ -1,0 +1,11 @@
+extends ../layout
+
+block variables
+    - var page_title = "Admin";
+
+block content
+    h1 Posts
+    a(href="/admin/posts/add") Add Post
+    ul
+        each post in posts
+            li <a href="/admin/posts/item/#{post._id}">#{post.title}</a>
