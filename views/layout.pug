@@ -5,12 +5,13 @@ block variables
 
 html
     head
-        meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title #{page_title} | #{site_title} • #{site_desc}
-        link(rel="shortcut icon", href="https://b3u.netlify.com/assets/favicon.ico", type="image/x-icon")
-        link(rel="stylesheet", href="/css/style.css")
-        script(defer, src="/js/main.js")
+        block head
+            meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
+            meta(name="viewport", content="width=device-width, initial-scale=1.0")
+            title #{page_title} | #{site_title} • #{site_desc}
+            link(rel="shortcut icon", href="https://b3u.netlify.com/assets/favicon.ico", type="image/x-icon")
+            link(rel="stylesheet", href="/css/style.css")
+            script(defer, src="/js/main.js")
     body
         header.page-header
             a(href="/").page-header__logo= site_title

@@ -36,14 +36,14 @@ const getPosts = require('../utils/db');
 
         let data = {...req.body}
         
-        if(data.title) changes.title = data.title;
-        if(data.content) changes.content = data.content;
-        if(data.author) changes.author = data.author;
-        if(data.pub_date) changes.pub_date = data.pub_date;
+        if(data.title && typeof data.title === 'string') changes.title = data.title;
+        if(data.content && typeof data.content === 'string') changes.content = data.content;
+        if(data.author && typeof data.author === 'string') changes.author = data.author;
+        if(data.pub_date && typeof data.pub_date === 'string') changes.pub_date = data.pub_date;
 
         let dbRes = await posts.updateOne({_id: ObjectID(req.params.id)}, {$set: {...changes}});
 
-        res.send(dbRes);
+        res.status(200).send(dbRes);
     })
 
 

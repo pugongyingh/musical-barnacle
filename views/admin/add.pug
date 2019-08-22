@@ -4,7 +4,7 @@ block variables
     - var page_title = "Admin"
 
 block content
-    form(action="/api", method="post")
+    form#addForm(action="/api", method="post")
         h1 Add Your content here
         p
             label(for="title")
