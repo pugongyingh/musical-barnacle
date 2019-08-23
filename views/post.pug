@@ -1,4 +1,4 @@
-extends layout
+extends layouts/default
 
 block variables
     - var page_title = title
@@ -6,4 +6,4 @@ block variables
 block content
     h1= title
     p.post__author by #{author}
-    article= content
+    article!= decodeURIComponent(content)

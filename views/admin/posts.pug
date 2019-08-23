@@ -1,4 +1,4 @@
-extends ../layout
+extends ../layouts/admin
 
 block variables
     - var page_title = "Admin";
@@ -8,4 +8,4 @@ block content
     a(href="/admin/posts/add") Add Post
     ul
         each post in posts
-            li <a href="/admin/posts/item/#{post._id}">#{post.title}</a>
+            li <a href="/admin/posts/edit/#{post._id}">#{post.title}</a>

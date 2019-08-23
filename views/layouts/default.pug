@@ -1,0 +1,17 @@
+- var site_title = "Musical Barnacle";
+- var site_desc = "A custom cms"
+
+block variables
+
+html
+    head
+        include ../includes/head
+    body
+        header.page-header
+            a(href="/").page-header__logo= site_title
+            nav
+                a(href="/").page-header__nav-link Home
+                a(href="/posts").page-header__nav-link Posts
+        main
+            block content
+        footer.page-footer &copy; 2019 by Binyamin Green

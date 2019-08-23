@@ -1,21 +1,26 @@
-extends ../layout
+extends ../layouts/admin
 
 block variables
     - var page_title = "Admin"
 
+append head
+    script(src="//cdn.quilljs.com/1.3.6/quill.min.js")
+    link(href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet")
+
 block content
+    h1 Add Your content here
     form#addForm(action="/api", method="post")
-        h1 Add Your content here
         p
-            label(for="title")
+            label(for="title") Title
             input#title(type="text", name="title", required)
         p
-            label(for="author")
+            label(for="author") Author
             input#author(type="text", name="author", required)
         p
-            label(for="pub_date")
+            label(for="pub_date") Date Published
             input#pub_date(type="date", name="pub_date", required)
         p
-            label(for="content")
-            textarea#content(name="content", cols="30", rows="10", required)
+            label(for="quillEditor") Content
+            input(type="hidden", name="content")
+            include ../includes/editor.pug
         button(type="submit") Create Post

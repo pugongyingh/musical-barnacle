@@ -1,6 +1,7 @@
 if(document.getElementById('addForm')) {
     document.getElementById('addForm').addEventListener('submit', ev => {
         ev.preventDefault();
+        processQuill();
         if(confirm('Create this post?')) ev.target.submit();
     })
 }
@@ -31,6 +32,7 @@ if(document.getElementById('editForm')) {
     document.getElementById('editForm').addEventListener('submit', ev => {
         ev.preventDefault();
         if(confirm('Save this post?')) {
+            processQuill();
             let obj = {},
                 data = new FormData(ev.target).entries();
             [...data].forEach(arr => obj[arr[0]] = arr[1]);
@@ -53,6 +55,23 @@ if(document.getElementById('editForm')) {
     }
     })
 }
+
+if(document.querySelector('#quillEditor')) {    
+    var editor = new Quill('#quillEditor', {
+        modules: {
+            toolbar: '#toolbar'
+        },
+        theme: 'snow',
+        placeholder: "Compose an epic..."
+    })
+}
+
+
+function processQuill() {
+    let value = encodeURIComponent(document.querySelector('#quillEditor .ql-editor').innerHTML.toString());
+    document.querySelector('input[name=content]').value = value;
+}
+
 
 function redirect(url) {
     let a = document.createElement('a')

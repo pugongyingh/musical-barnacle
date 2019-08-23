@@ -20,7 +20,7 @@ const getPosts = require('../utils/db');
         res.render(path.join(__dirname, '../views/admin/add.pug'))
     })
 
-    router.get('/posts/item/:id', async function(req, res) {
+    router.get('/posts/edit/:id', async function(req, res) {
         let post = await posts.findOne({_id: ObjectID(req.params.id)});
         res.render(path.join(__dirname, '../views/admin/post.pug'), {...post})
     })
