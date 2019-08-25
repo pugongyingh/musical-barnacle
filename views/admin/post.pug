@@ -1,14 +1,11 @@
 extends ../layouts/admin
 
-block variables
-    - var page_title = "Admin"
-
 append head
-    script(src="//cdn.quilljs.com/1.3.6/quill.min.js")
-    link(href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet")
+    script(src="https://cdn.quilljs.com/1.3.6/quill.min.js")
+    link(href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet")
 
-block content
-    form#editForm(method="get" action="#")
+block content    
+    form#editForm(method="get" action="/api/post_" + _id)
         input(type="hidden", name="_id" value=_id)
         p
             label(for="title") Title

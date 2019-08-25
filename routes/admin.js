@@ -1,29 +1,40 @@
 const express = require('express');
-const path = require('path');
+const mongoose = require('mongoose');
+const Post = require('../models/Post');
 const router = express.Router();
-const { ObjectID } = require('mongodb');
-const getPosts = require('../utils/db');
-
-(async () => {
-    let posts = await getPosts();
     
-    router.get('/', async function(req, res) {
-        res.render(path.join(__dirname, '../views/admin/index.pug'))
-    })
+router.get('/', function(req, res) {
+    res.render('admin/index')
+})
 
-    router.get('/posts', async function(req, res) {
-        let postArray = await posts.find({}).toArray();
-        res.render(path.join(__dirname, '../views/admin/posts.pug'), {posts: postArray})
-    })
-    
-    router.get('/posts/add', async function(req, res) {
-        res.render(path.join(__dirname, '../views/admin/add.pug'))
-    })
+router.get('/posts', function(req, res, next) {
+    Post.find()
+        .then(posts => {
+            res.render('admin/posts', {posts})
+        })
+        .catch(e => {
+            console.log(e);
+            res.status(404);
+            next();
+        })
+})
 
-    router.get('/posts/edit/:id', async function(req, res) {
-        let post = await posts.findOne({_id: ObjectID(req.params.id)});
-        res.render(path.join(__dirname, '../views/admin/post.pug'), {...post})
-    })
-})()
+router.get('/posts/add', function(req, res) {
+    res.render('admin/add');
+})
+
+router.get('/posts/edit/:_id', function(req, res) {
+    Post.findOne({_id: req.params._id})
+        .then(post => {
+            const { title, author, content, pub_date } = post;
+            res.render('admin/post', {
+                _id: req.params._id,
+                title,
+                author,
+                content,
+                pub_date: pub_date.toISOString().slice(0, 10)
+            });
+        })
+})
     
 module.exports = router;

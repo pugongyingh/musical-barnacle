@@ -4,6 +4,8 @@
  - use passport for auth
     - api
     - admin
+
+## Doing
  - validation
     - client
     - server
@@ -16,3 +18,4 @@
  
 ## Done
  - use quilljs for rich text content
+ - add mongoose

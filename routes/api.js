@@ -1,57 +1,83 @@
 const express = require('express');
-const { ObjectID } = require('mongodb');
-const path = require('path');
+const mongoose = require('mongoose');
+const Post = require('../models/Post');
 const router = express.Router();
-const getPosts = require('../utils/db');
 
-(async () => {
-    const posts = await getPosts();
+// Read
+router.get('/', function(req, res) {
+    Post.find()
+        .then(posts => {
+            res.send(posts)
+        })
+        .catch(e => console.error(e));
+})
 
-    // Get
-    router.get('/', async function(req, res) {
-        res.send(await posts.find({}).toArray())
+router.get('/post_:_id', function(req, res, next) {
+    Post.findOne({_id: req.params._id})
+        .then(post => {
+            res.send(post);
+        })
+        .catch(e => {
+            console.log(e);
+            res.status(404);
+            next();
+        })
+})
+
+// Create
+router.post('/', function(req, res) {
+
+    const newPost = new Post({
+        title: req.body.title,
+        content: req.body.content,
+        author: req.body.author,
+        pub_date: req.body.pub_date
     })
+    newPost.save();
 
-    router.get('/:id', async function(req, res) {
-        let obj = await posts.findOne({_id: ObjectID(req.params.id)});
-        obj ? res.send(obj) : res.status(404);
-    })
+    res.status(201).send(newPost);
+})
 
-    // Create
-    router.post('/', async function(req, res) {
+// Update
+router.put('/post_:_id', function(req, res, next) {
+    /* Validate */
+    const {title, author, content, pub_date} = req.body;
 
-        await posts.insertOne({
-            title: req.body.title,
-            content: req.body.content,
-            author: req.body.author,
-            pub_date: req.body.pub_date
+    let changes = {};
+
+    if(title) changes.title = title;
+    if(author) changes.author = author;
+    if(content) changes.content = content;
+    if(pub_date) changes.pub_date = pub_date;
+
+    Post.updateOne({_id: req.params._id}, {...changes})
+        .then(response => {
+            // Post exists
+            res.status(201).send({msg: "Successfully updated one post"})
+        })
+        .catch(error => {
+            // Post does not exist
+            console.log(error);
+            res.status(404);
+            next();
         })
 
-        res.status(201).render(path.join(__dirname, '../views/msg.pug'), {msg: 'Successfully added one post.'})
-    })
-
-    // Edit
-    router.put('/:id', async function(req, res) {
-        let changes = {}
-
-        let data = {...req.body}
-        
-        if(data.title && typeof data.title === 'string') changes.title = data.title;
-        if(data.content && typeof data.content === 'string') changes.content = data.content;
-        if(data.author && typeof data.author === 'string') changes.author = data.author;
-        if(data.pub_date && typeof data.pub_date === 'string') changes.pub_date = data.pub_date;
-
-        let dbRes = await posts.updateOne({_id: ObjectID(req.params.id)}, {$set: {...changes}});
-
-        res.status(200).send(dbRes);
-    })
+       
+})
 
 
-    // Delete
-    router.delete('/:id', async function(req, res) {
-        let obj = await posts.deleteOne({_id: ObjectID(req.params.id)})
-        obj ? res.status(200) : res.status(404);
-    })
-})()
+// Delete
+router.delete('/post_:_id', function(req, res, next) {
+    Post.deleteOne({_id: req.params._id})
+        .then(() => {
+            res.status(200).send({msg: "Deleted One Post"})
+        })
+        .catch(e => {
+            console.log(e);
+
+            res.status(404);
+            next();
+        })
+})
 
 module.exports = router;
