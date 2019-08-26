@@ -3,10 +3,18 @@ html, body {
   margin: 0;
   padding: 0;
   font-family: Montserrat, sans-serif;
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .page-header {
-  background-color: rebeccapurple;
+  background-color: royalblue;
   color: #eee;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -38,6 +46,129 @@ html, body {
 
 main {
   padding: 0 32px;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+main.admin--home section.common div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main.admin--home section.common div a {
+  margin-right: 16px;
+}
+
+main.login {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+form#editForm, form#addForm {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+form > p {
+  width: 30%;
+}
+
+form label {
+  display: block;
+  margin-bottom: 4px;
+}
+
+form input[type=text] {
+  padding: 4px 0 4px 8px;
+}
+
+form input {
+  width: 225px;
+}
+
+form .quillEditor-wrapper {
+  width: 100%;
+}
+
+form #quillEditor {
+  height: 400px;
+}
+
+form .button-container {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+form .button-container button {
+  margin: 12px 16px 0 0;
+}
+
+.btn {
+  cursor: pointer;
+  background-color: royalblue;
+  border: none;
+  -webkit-box-shadow: 0 2px 6px 2px rgba(0, 0, 0, 0.25);
+          box-shadow: 0 2px 6px 2px rgba(0, 0, 0, 0.25);
+  padding: 12px 16px;
+  color: #eee;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn:hover {
+  -webkit-box-shadow: 0 3px 6px 2px rgba(0, 0, 0, 0.35);
+          box-shadow: 0 3px 6px 2px rgba(0, 0, 0, 0.35);
+}
+
+main.posts--admin {
+  width: 80%;
+  margin: 0 auto;
+}
+
+main.posts--admin .card {
+  padding: 8px 16px;
+  margin: 16px 0;
+  -webkit-box-shadow: 0 1px 6px 2px rgba(0, 0, 0, 0.25);
+          box-shadow: 0 1px 6px 2px rgba(0, 0, 0, 0.25);
+  display: block;
+  text-decoration: none;
+  color: #111;
+}
+
+main.posts--admin .card:hover {
+  background-color: #d9e1f9;
+}
+
+main.posts--admin .btn {
+  font-size: 14px;
+  padding: 6px 8px;
 }
 
 .page-footer {

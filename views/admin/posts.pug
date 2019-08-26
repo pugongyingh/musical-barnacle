@@ -1,11 +1,11 @@
 extends ../layouts/admin
 
-block variables
-    - var page_title = "Admin";
+append variables
+    - var main_class = "posts--admin";
 
 block content
     h1 Posts
-    a(href="/admin/posts/add") Add Post
-    ul
+    div.grid
         each post in posts
-            li <a href="/admin/posts/edit/#{post._id}">#{post.title}</a>
+            a(href="/admin/posts/edit/" + post._id).card= post.title
+        a(href="/admin/posts/add").btn Add Post

@@ -1,10 +1,11 @@
 extends ../layouts/admin
 
-block variables
-    - var page_title = "Admin";
+append variables
+    - var main_class = "admin--home"
 
 block content
-    h1 Collections
-    ul
-        li
-            a(href="/admin/posts") Posts
+    h1 Welcome #{name}
+    section.common
+        h2 Common Actions
+        div
+            a(href="/admin/posts").btn Manage Posts

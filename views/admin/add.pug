@@ -16,8 +16,9 @@ block content
         p
             label(for="pub_date") Date Published
             input#pub_date(type="date", name="pub_date", required)
-        p
+        div.quillEditor-wrapper
             label(for="quillEditor") Content
             input(type="hidden", name="content")
             include ../includes/editor.pug
-        button(type="submit") Create Post
+        div.button-container
+            button(type="submit").btn Create Post

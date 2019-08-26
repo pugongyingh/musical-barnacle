@@ -1,0 +1,22 @@
+extends ../layouts/admin
+
+block content
+    h1 Log In
+    form(action="/admin/register", method="POST")
+        if errors
+            div.errors
+                each e in errors
+                    p= e.msg
+        p
+            label(for="name") Name
+            input#name(type="text", name="name", required, placeholder="Enter your name...", value=name)
+        p
+            label(for="email") Email
+            input#email(type="email", name="email", required, placeholder="Enter your email...", value=email)
+        p
+            label(for="password") Password
+            input#password(type="password", name="password", required, placeholder="Enter your Password...", minlength="8")
+        p
+            label(for="password2") Confirm Password
+            input#password2(type="password", name="password2", minlength="8", required, placeholder="Confirm your Password...")
+        button(type="submit").btn Register

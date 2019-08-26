@@ -33,9 +33,13 @@ router.post('/', function(req, res) {
         author: req.body.author,
         pub_date: req.body.pub_date
     })
-    newPost.save();
+    newPost.save()
+        .then(res => res.status(201).send(newPost))
+        .catch(e => {
+            console.log(e)
+            res.send(e)
+        })
 
-    res.status(201).send(newPost);
 })
 
 // Update

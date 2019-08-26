@@ -1,13 +1,19 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
 
+$accent: royalblue;
+
 html, body {
     margin: 0;
     padding: 0;
     font-family: Montserrat, sans-serif;
+
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .page-header {
-    background-color: rebeccapurple;
+    background-color: $accent;
     color: #eee;
     display: flex;
     justify-content: space-between;
@@ -33,7 +39,107 @@ html, body {
 
 main {
     padding: 0 32px;
+    flex-grow: 1;
 }
+
+main.admin--home {
+    section.common div {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        
+        a {
+            margin-right: 16px;
+        }
+    }
+}
+
+main.login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    &#editForm, &#addForm {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    > p {
+        width: 30%;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 4px;
+    }
+
+    input[type=text] {
+        padding: 4px 0 4px 8px;
+    }
+    input{
+        width: 225px;
+    }
+
+    .quillEditor-wrapper {
+        width: 100%;
+    }
+    
+    #quillEditor {
+        height: 400px;
+    }
+
+    .button-container {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .button-container button {
+        margin: 12px 16px 0 0;
+    }
+}
+
+.btn {
+    cursor: pointer;
+    background-color: $accent;
+    border: none;
+    box-shadow: 0 2px 6px 2px rgba(0,0,0,0.25);
+    padding: 12px 16px;
+    color: #eee;
+    text-decoration: none;
+    display: inline-block;
+
+    &:hover {
+        box-shadow: 0 3px 6px 2px rgba(0,0,0,0.35);
+    }
+}
+
+main.posts--admin {
+    width: 80%;
+    margin: 0 auto;
+
+    .card {
+        padding: 8px 16px;
+        margin: 16px 0;
+        box-shadow: 0 1px 6px 2px rgba(0,0,0,0.25);
+        display: block;
+        text-decoration: none;
+        color: #111;
+
+        &:hover {
+            background-color: mix($accent, white, 20);
+        }
+    }
+
+    .btn {
+        font-size: 14px;
+        padding: 6px 8px;
+    }
+}
+
 
 .page-footer {
     padding: 1rem 0 1rem 4rem;

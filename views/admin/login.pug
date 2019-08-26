@@ -1,0 +1,17 @@
+extends ../layouts/default
+
+block variables
+    - var page_title = "Log in"
+    - var main_class = "login"
+
+block content
+    h1 Log In
+    form(action="/admin/login", method="POST")
+        include ../includes/messages
+        p
+            label(for="email") Email
+            input#email(type="email", name="email", required, placeholder="Enter your email...")
+        p
+            label(for="password") Password
+            input#password(type="password", name="password", required, placeholder="Enter your Password...")
+        button(type="submit").btn Login

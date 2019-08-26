@@ -1,19 +1,14 @@
-- var site_title = "Musical Barnacle";
-- var site_desc = "A custom cms"
+extends default
+
 
 block variables
     - var page_title = "Admin"
 
-html
-    head
-        include ../includes/head
-    body
-        header.page-header
-            a(href="/").page-header__logo= site_title
-            nav
-                a(href="/admin").page-header__nav-link Admin Home
-                a(href="/admin/posts").page-header__nav-link Posts
-                a(href="/admin/posts/add").page-header__nav-link Add Post
-        main
-            block content
-        footer.page-footer &copy; 2019 by Binyamin Green
+block nav
+    a(href="/admin").page-header__nav-link Dashboard
+    a(href="/admin/posts").page-header__nav-link Posts
+    a(href="/admin/users").page-header__nav-link Users
+    a(href="/admin/logout").page-header__nav-link Logout
+
+block content
+    block content

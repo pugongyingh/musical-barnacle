@@ -10,8 +10,9 @@ html
         header.page-header
             a(href="/").page-header__logo= site_title
             nav
-                a(href="/").page-header__nav-link Home
-                a(href="/posts").page-header__nav-link Posts
-        main
+                block nav
+                    a(href="/").page-header__nav-link Home
+                    a(href="/posts").page-header__nav-link Posts
+        main(class=main_class)
             block content
         footer.page-footer &copy; 2019 by Binyamin Green

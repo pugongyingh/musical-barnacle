@@ -1,21 +1,22 @@
 # My cms
 
 ## To Do
- - use passport for auth
-    - api
-    - admin
+ - flash messaging
+ - use passport for auth (api)
 
 ## Doing
- - validation
-    - client
-    - server
 
 ## Random
+ - custom validation messages
+ - Make author field (in posts collection) relational
+ - redirect post creation to '/admin/posts/edit/<_id>'
  - handle image uploads (save location)
     - editor
     - thumbnail?
  - add thumbnail
  
 ## Done
+ - use passport for auth (admin)
  - use quilljs for rich text content
  - add mongoose
+ - validation (client & server)

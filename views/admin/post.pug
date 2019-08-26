@@ -4,21 +4,23 @@ append head
     script(src="https://cdn.quilljs.com/1.3.6/quill.min.js")
     link(href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet")
 
-block content    
+block content
+    h1 Edit Post
     form#editForm(method="get" action="/api/post_" + _id)
         input(type="hidden", name="_id" value=_id)
         p
             label(for="title") Title
-            input#title(type="text", name="title", value=title)
+            input#title(type="text", name="title", value=title, required)
         p
             label(for="author") Author
-            input#author(type="text", name="author", value=author)
+            input#author(type="text", name="author", value=author, required)
         p
             label(for="pub_date") Date Published
-            input#pub_date(type="date", name="pub_date", value=pub_date)
-        p
+            input#pub_date(type="date", name="pub_date", value=pub_date, required)
+        div.quillEditor-wrapper
             label(for="quillEditor") Content
             input(type="hidden", name="content")
             include ../includes/editor.pug
-        button#deleteBtn Delete
-        button(type="submit") Save Post
+        div.button-container
+            button#deleteBtn.btn Delete
+            button(type="submit").btn Save Post

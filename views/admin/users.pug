@@ -1,0 +1,10 @@
+extends ../layouts/admin
+
+block content
+    h1 Users
+    ul
+        each user in users
+            li: p
+                <b>Name:</b> #{user.name}
+                br
+                <b>Email:</b> #{user.email}
