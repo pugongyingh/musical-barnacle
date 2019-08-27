@@ -1,7 +1,6 @@
 # My cms
 
 ## To Do
- - flash messaging
  - use passport for auth (api)
 
 ## Doing
@@ -16,6 +15,7 @@
  - add thumbnail
  
 ## Done
+ - flash messaging
  - use passport for auth (admin)
  - use quilljs for rich text content
  - add mongoose

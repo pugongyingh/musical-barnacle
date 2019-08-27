@@ -5,8 +5,8 @@ block variables
     - var main_class = "login"
 
 block content
-    h1 Log In
     form(action="/admin/login", method="POST")
+        h1 Log In
         include ../includes/messages
         p
             label(for="email") Email

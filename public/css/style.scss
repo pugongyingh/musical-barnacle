@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
 
-$accent: royalblue;
+$accent: rgb(105, 202, 162);
 
 html, body {
     margin: 0;
@@ -10,6 +10,10 @@ html, body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+}
+
+input {
+    font-family: Montserrat, sans-serif;
 }
 
 .page-header {
@@ -54,11 +58,62 @@ main.admin--home {
     }
 }
 
-main.login {
+main.login, main.register {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    form {
+        width: 275px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+
+        > p {
+            display: inline-block;
+            width: 100%;
+            margin: 12px 0;
+
+            input {
+                width: 100%;
+                padding: 4px 0 4px 4px
+            }
+        }
+
+        button[type=submit] {
+            margin-top: 24px;
+            padding: 6px 0;
+            width: 100%;
+        }
+    }
+}
+
+.msg-wrapper {
+    width: 100%;
+    max-width: 300px;
+}
+
+.msg {
+    display: block;
+    width: 100%;
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-size: 14px;
+    box-sizing: border-box;
+
+    &--error {
+        background-color: hsl(0, 61%, 91%);
+        color: hsl(0, 80%, 32%);
+        border: 1px solid hsl(0, 80%, 32%);
+    }
+
+    &--success {
+        background-color: hsl(133, 61%, 91%);
+        color: hsl(133, 90%, 22%);
+        border: 1px solid hsl(133, 90%, 22%);
+    }
 }
 
 form {

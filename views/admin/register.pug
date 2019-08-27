@@ -1,12 +1,9 @@
 extends ../layouts/admin
 
 block content
-    h1 Log In
     form(action="/admin/register", method="POST")
-        if errors
-            div.errors
-                each e in errors
-                    p= e.msg
+        h1 Log In
+        include ../includes/messages
         p
             label(for="name") Name
             input#name(type="text", name="name", required, placeholder="Enter your name...", value=name)

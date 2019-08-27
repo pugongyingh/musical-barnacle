@@ -57,11 +57,11 @@ router.get('/users', ensureAuthenticated, function(req, res, next) {
 
 // Auth Routes
 router.get('/register', ensureAuthenticated, (req, res) => {
-    res.render('admin/register')
+    res.render('admin/register', {success_msg: req.flash('success_msg')})
 })
 
 router.get('/login', (req, res) => {
-    res.render('admin/login');
+    res.render('admin/login', {success_msg: req.flash('success_msg')});
 })
 
 // Register Handle

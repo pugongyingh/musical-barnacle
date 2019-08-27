@@ -1,12 +1,12 @@
 div.msg-wrapper
-    if success_msg
-        p.msg= success_msg
-    if success
-        p.msg= success
-    if error_msg
-        p.msg= error
-    if error
-        p.msg= error_msg
+    if success_msg != ''
+        p.msg.msg--success.a= success_msg
+    if typeof success != 'undefined'
+        p.msg.msg--success.b= success
+    if error != ''
+        p.msg.msg--error.c= error
+    if error_msg != ''
+        p.msg.msg--error.d= error_msg
     if errors && errors.length > 0
         each e in errors
-            p.msg= e.msg
+            p.msg.msg--error.e= e.msg
