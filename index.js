@@ -9,7 +9,7 @@ const port = process.env.PORT || 3000
 
 
 // Passport Config
-require('./config/passport')(passport);
+require('./auth/passport')(passport);
 
 
 // Configure `.env`
@@ -68,6 +68,7 @@ app.use((req, res, next) => {
 app.use('/', require('./routes/index'));
 app.use('/api', require('./routes/api'));
 app.use('/admin', require('./routes/admin'));
+app.use('/auth', require('./routes/auth'));
 
 
 // 404 Handler

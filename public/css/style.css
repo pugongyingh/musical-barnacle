@@ -55,6 +55,32 @@ main {
           flex-grow: 1;
 }
 
+main.post {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.post__thumbnail--wrapper {
+  width: 100%;
+  min-width: 300px;
+  height: 200px;
+  overflow: hidden;
+  margin: 24px auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.post__thumbnail--wrapper img {
+  width: 100%;
+}
+
 main.admin--home section.common div {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -156,8 +182,33 @@ form#editForm, form#addForm {
       flex-wrap: wrap;
 }
 
-form > p {
-  width: 30%;
+form > p,
+form > div {
+  width: 25%;
+}
+
+form div.img-thumbnail--wrapper {
+  width: 200px;
+  height: 150px;
+  padding: 2px;
+  overflow: hidden;
+  display: inline-block;
+  border: 1px dashed #111;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+form div.img-thumbnail--wrapper img {
+  width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 form label {

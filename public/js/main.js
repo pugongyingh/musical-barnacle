@@ -27,11 +27,8 @@ if(document.getElementById('editForm')) {
         if(!isValid(ev.target)) return;
         if(confirm('Save this post?')) {
             processQuill()
-            let data = {},
-                formData = new FormData(ev.target).entries();
-            [...formData].forEach(arr => data[arr[0]] = arr[1]);
-
-            fetch(ev.target.action, {method: "PUT", body: JSON.stringify(data), headers: {"Content-Type": "application/json"}})
+            let formData = new FormData(ev.target);
+            fetch(ev.target.action, {method: "PUT", body: formData})
             .then(res => {
                 alert('Successfully updated post');
             })
@@ -50,9 +47,30 @@ if(document.querySelector('#quillEditor')) {
     })
 }
 
+async function upload(data) {
+    let r = await fetch(data);
+    let blob = await r.blob();
 
-function processQuill() {
-    let value = encodeURIComponent(document.querySelector('#quillEditor .ql-editor').innerHTML.toString());
+    let formData = new FormData();
+    formData.append('img', blob);
+
+    let res = await fetch('/api/upload', { method: "POST", body: formData })
+    let txt = await res.text();
+    return txt;
+}
+
+async function processQuill() {
+    // Process Images
+/*     let imgList = document.querySelectorAll('.ql-editor img');
+    if(typeof imgList[0] !== 'undefined') {
+        let data = imgList[0].src;
+        let filename = await upload(data);
+        imgList[0].src = "/uploads/"+ filename;
+    } */
+
+    // Save content
+    let editor = document.querySelector('#quillEditor .ql-editor');
+    let value = encodeURIComponent(editor.innerHTML.toString());
     if (value === '') throw new Error('Please fill out all fields');
     document.querySelector('input[name=content]').value = value;
 }

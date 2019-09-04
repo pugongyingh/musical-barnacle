@@ -46,6 +46,27 @@ main {
     flex-grow: 1;
 }
 
+main.post {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.post__thumbnail--wrapper {
+    width: 100%;
+    min-width: 300px;
+    height: 200px;
+    overflow: hidden;
+    margin: 24px auto;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        width: 100%;
+    }
+}
+
 main.admin--home {
     section.common div {
         display: flex;
@@ -122,8 +143,27 @@ form {
         flex-wrap: wrap;
     }
 
-    > p {
-        width: 30%;
+    > p,
+    > div {
+        width: 25%;
+    }
+    
+    div.img-thumbnail--wrapper {
+        width: 200px;
+        height: 150px;
+        padding: 2px;
+        overflow: hidden;
+        display: inline-block;
+        border: 1px dashed #111;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            width: 100%;
+            object-fit: contain;
+        }
     }
 
     label {

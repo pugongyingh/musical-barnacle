@@ -6,7 +6,8 @@ append head
 
 block content
     h1 Add Your content here
-    form#addForm(action="/api", method="post")
+    include ../includes/messages
+    form#addForm(action="/api", method="post", enctype="multipart/form-data")
         p
             label(for="title") Title
             input#title(type="text", name="title", required)
@@ -16,6 +17,10 @@ block content
         p
             label(for="pub_date") Date Published
             input#pub_date(type="date", name="pub_date", required)
+        p
+            label(for="thumbnail") Thumbnail
+            img#thumbnail-img(src="", alt="")
+            input#thumbnail(type="file", name="thumbnail", accept="image/*", required)
         div.quillEditor-wrapper
             label(for="quillEditor") Content
             input(type="hidden", name="content")

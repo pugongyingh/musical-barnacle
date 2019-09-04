@@ -2,8 +2,11 @@ extends layouts/default
 
 block variables
     - var page_title = title
+    - var main_class = "post"
 
 block content
+    div.post__thumbnail--wrapper
+        img(src="/uploads/" + thumbnail, alt="")
     h1= title
     p.post__author by #{author}
     article!= decodeURIComponent(content)

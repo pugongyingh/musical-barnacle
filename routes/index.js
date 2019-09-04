@@ -22,7 +22,8 @@ router.get('/posts/:_id', function(req, res, next) {
                 title: post.title,
                 content: post.content,
                 author: post.author,
-                pub_date : post.pub_date
+                pub_date : post.pub_date,
+                thumbnail: post.thumbnail
             })
         })
         .catch(e => {
